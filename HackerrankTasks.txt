@@ -1,0 +1,588 @@
+//Java 1D Array - 1
+
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+	   
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        int[] a = new int[n];
+        for(int i = 0; i<n; i++)
+        {
+            a[i] = scan.nextInt();
+        }
+        
+        scan.close();
+
+        // Prints each sequential element in array a
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(a[i]);
+        }
+    }
+}
+
+//Java 2D Array - 2
+import java.util.Scanner;
+
+public class Solution {
+
+    public static void main(String [] args) {
+        Scanner scanner = new Scanner(System.in);
+        int arr[][] = new int[6][6];
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                arr[i][j] = scanner.nextInt();
+            }
+        }
+        System.out.println(Hourglass(arr));
+    }
+
+    private static int Sum(int [][] arr, int i, int j) {
+        int sum = arr[i+0][j+0] + arr[i+0][j+1] + arr[i+0][j+2] + arr[i+1][j+1] + arr[i+2][j+0] + arr[i+2][j+1] + arr[i+2][j+2];
+        return sum;
+    }
+    
+    public static int Hourglass(int [][] arr) {
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                int sum = Sum(arr, i, j);
+                max = Math.max(max, sum);
+            }
+        }
+        return max;
+    }
+}
+
+
+
+
+//Java Subarray - 3
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        
+         Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        int[] arr = new int[N];
+        for(int i = 0; i < N; i++)
+        {
+            arr[i] = scanner.nextInt();
+        }
+
+        int q = 0;
+        int sum;
+        for(int i = 0; i<N; i++)
+        {
+            for(int j = i; j<N; j++)
+            {
+                sum = 0;
+                for(int k = i; k <= j; k++) {
+                    sum = sum + arr[k];
+                }
+                if(sum<0)
+                {
+                    q++;
+                }
+            }
+        }
+
+
+        System.out.println(q);
+        
+    }
+}
+
+
+//Java Arraylist - 4
+
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+
+        ArrayList<ArrayList<Integer>> lists = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            int d = scanner.nextInt();
+            
+            ArrayList<Integer> list = new ArrayList<>();
+            for (int j = 0; j < d; j++) {
+                list.add(scanner.nextInt());
+            }
+            lists.add(list);
+        }
+
+        int q = scanner.nextInt();
+        for (int i = 0; i < q; i++) {
+            int x = scanner.nextInt();
+            int y = scanner.nextInt();
+            ArrayList<Integer> list = lists.get(x-1);
+            if (y <= list.size()) {
+                System.out.println(list.get(y-1));
+            } else {
+                System.out.println("ERROR!");
+            }
+        }
+    }
+}
+
+
+
+//Java 1D Array (PART 2) - 5
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner scanner = new Scanner(System.in);
+        int l = scanner.nextInt();
+        for (int i = 0; i < l; i++) {
+            int n = scanner.nextInt();
+            int m = scanner.nextInt();
+            int[] arr = new int[n];
+            
+            for (int j = 0; j < n; j++) {
+                arr[j] = scanner.nextInt();
+            }
+
+            System.out.println(canWin(0, m, arr) ? "YES" : "NO");
+                
+        }
+    }
+    
+    public static boolean canWin(int i, int m, int[] arr) {
+        if (i >= arr.length) {
+            return true;
+        } else if (i >= 0 && arr[i] == 0) {
+            arr[i] = 1;
+            return canWin(i - 1, m, arr) || canWin(i + 1, m, arr) || canWin(i + m, m, arr);
+        } else {
+            return false;
+        }
+    }
+}
+
+
+
+//Java List - 6
+
+import java.util.Scanner;
+import java.util.LinkedList;
+
+public class Solution {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        LinkedList<Integer> list = new LinkedList<>();
+        for (int i = 0; i < N; i++) {
+            int data = scanner.nextInt();
+            list.add(data);
+        }
+
+
+        int Q = scanner.nextInt();
+        for (int i = 0; i < Q; i++) {
+            String c = scanner.next();
+            if (c.equals("Insert")) {
+                int index = scanner.nextInt();
+                int data = scanner.nextInt();
+                list.add(index, data);
+            } else {
+                int index = scanner.nextInt();
+                list.remove(index);
+            }
+        }
+
+       for (Integer i : list) {
+            System.out.print(i + " ");
+        }
+    }
+}
+
+
+
+
+//Java Map - 7
+
+import java.util.*;
+import java.io.*;
+
+class Solution{
+    public static void main(String []argh)
+    {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        scanner.nextLine();
+        HashMap<String, Integer> s = new HashMap<String, Integer>();
+
+        for(int i=0;i < n;i++)
+        {
+            String name = scanner.nextLine();
+            int phone = scanner.nextInt();
+            s.put(name, phone);
+            scanner.nextLine();
+        }
+        while(scanner.hasNext())
+        {
+            String st = scanner.nextLine();
+            try{
+                int temp = s.get(st);
+                System.out.println(st+"="+temp);
+            }catch(NullPointerException e){
+                System.out.println("Not found");
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+//Java Stack - 8
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    static Stack<Character> stack;
+    
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        
+        while (scan.hasNext()) {
+            stack = new Stack<Character>();
+            System.out.println(areBalanced(scan.nextLine()));
+        }
+    }
+    
+    static boolean areBalanced(String str) {
+        if (str.length() == 0)
+            return true;
+        else {
+            char temp;
+            for (int x = 0; x < str.length(); x++) {
+                temp = str.charAt(x);
+                if (temp == '(' || temp == '{' || temp == '[')
+                    stack.push(temp);
+                if (temp == ')') {
+                    if (stack.size() == 0 || stack.pop() != '(')
+                        return false;
+                }
+                if (temp == '}') {
+                    if (stack.size() == 0 || stack.pop() != '{')
+                        return false;
+                }
+                if (temp == ']') {
+                    if (stack.size() == 0 || stack.pop() != '[')
+                        return false;
+                }
+            }
+            return stack.size() == 0;
+        }
+    }
+}
+
+
+//Java Hashset - 9
+
+import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int T = scanner.nextInt();
+        Set<String> set = new HashSet<>();
+        while (T-- > 0) {
+            String a = scanner.next();
+            String b = scanner.next();
+            String key = a + " " + b;
+            if (!set.contains(key))
+                set.add(key);
+            System.out.println(set.size());
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Java Generics - 10
+public class Solution {
+    public static void printArray(Object[] arr) {
+        for (Object a : arr) {
+            System.out.println(a);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Integer[] arr_int = new Integer[]{1, 2, 3};
+        String[] arr_string = new String[]{"Hello", "World"};
+        printArray(arr_int);
+        printArray(arr_string);
+    }
+}
+
+
+
+//Java Comparator - 11
+
+import java.util.*;
+
+class Checker implements Comparator<Player> { 
+        public int compare(Player a, Player b) {
+                if (a.score == b.score) {
+                        return a.name.compareTo(b.name);
+                } else {
+                        return b.score - a.score;
+                }
+        }
+}
+
+class Player{
+    String name;
+    int score;
+    
+    Player(String name, int score){
+        this.name = name;
+        this.score = score;
+    }
+}
+
+class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+
+        Player[] player = new Player[n];
+        Checker checker = new Checker();
+        
+        for(int i = 0; i < n; i++){
+            player[i] = new Player(scan.next(), scan.nextInt());
+        }
+        scan.close();
+
+        Arrays.sort(player, checker);
+        for(int i = 0; i < player.length; i++){
+            System.out.printf("%s %s\n", player[i].name, player[i].score);
+        }
+    }
+}
+
+
+
+
+
+//Java Sort - 12
+import java.util.*;
+
+class Student{
+    private int id;
+    private String fname;
+    private double cgpa;
+    public Student(int id, String fname, double cgpa) {
+        super();
+        this.id = id;
+        this.fname = fname;
+        this.cgpa = cgpa;
+    }
+    public int getId() {
+        return id;
+    }
+    public String getFname() {
+        return fname;
+    }
+    public double getCgpa() {
+        return cgpa;
+    }
+}
+
+class SComparator implements Comparator<Student> {
+
+    public int compare(Student s1, Student s2) {
+        int comparison = Double.compare(s2.getCgpa(),s1.getCgpa());
+        if(comparison != 0) {
+            return comparison;
+        }
+
+        comparison = s1.getFname().compareTo(s2.getFname());
+        if(comparison != 0) {
+            return comparison;
+        }
+
+        return s1.getId() - s2.getId();
+    }
+}
+public class Solution
+{
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        int testCases = Integer.parseInt(in.nextLine());
+
+        List<Student> studentList = new ArrayList<Student>();
+        while(testCases>0){
+            int id = in.nextInt();
+            String fname = in.next();
+            double cgpa = in.nextDouble();
+
+            Student st = new Student(id, fname, cgpa);
+            studentList.add(st);
+
+            testCases--;
+        }
+
+        Collections.sort(studentList, new SComparator());
+
+        for(Student st: studentList){
+            System.out.println(st.getFname());
+        }
+    }
+}
+
+
+//Java Dequeue - 13
+
+import java.util.*;
+
+class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        Deque<Integer> deque = new ArrayDeque<>();
+        Set<Integer> s = new HashSet<>();
+        int n = in.nextInt();
+        int m = in.nextInt();
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < m; i++) {
+            deque.addLast(in.nextInt());
+        }
+        {
+
+            for (int x : deque) {
+                s.add(x);
+            }
+            max = s.size();
+        }
+        for (int i = m; i < n; i++) {
+            int h = deque.removeFirst();
+            if (!deque.contains(h)) {
+                s.remove(h);
+            }
+            h = in.nextInt();
+            deque.addLast(h);
+            s.add(h);
+
+            if (s.size() > max) {
+                max = s.size();
+            }
+        }
+        System.out.println(max);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
